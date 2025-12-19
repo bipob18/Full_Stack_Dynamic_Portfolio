@@ -13,6 +13,7 @@ class PortfolioProfile extends Model
         'about',
         'email',
         'phone',
+        'photo_path',
         'footer_text',
     ];
 }

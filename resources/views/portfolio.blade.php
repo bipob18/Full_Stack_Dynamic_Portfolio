@@ -23,6 +23,9 @@
 
         <!-- HERO SECTION -->
         <div class="header">
+            @if ($profile?->photo_path)
+                <img class="profile-photo" src="{{ \Illuminate\Support\Facades\Storage::url($profile->photo_path) }}" alt="{{ $profile?->full_name ?? 'Profile photo' }}">
+            @endif
             <h1>Hello, I'm <span>{{ $profile?->full_name ?? 'Biplob' }}</span></h1>
             <p>{{ $profile?->headline ?? 'Full-stack Web Developer & Designer' }}</p>
             <a href="#projects" class="btn">View My Work</a>
