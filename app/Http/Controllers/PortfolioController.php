@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PortfolioProfile;
+use App\Models\PortfolioEducation;
 use App\Models\PortfolioProject;
 use App\Models\PortfolioSkill;
 use App\Models\PortfolioSocialLink;
@@ -34,11 +35,20 @@ class PortfolioController extends Controller
             ? PortfolioSocialLink::query()->orderBy('sort_order')->orderBy('platform')->get()
             : collect();
 
+        $educations = Schema::hasTable('portfolio_educations')
+            ? PortfolioEducation::query()
+                ->orderBy('sort_order')
+                ->orderByDesc('end_year')
+                ->orderByDesc('start_year')
+                ->get()
+            : collect();
+
         return view('portfolio', [
             'profile' => $profile,
             'skills' => $skills,
             'projects' => $projects,
             'socialLinks' => $socialLinks,
+            'educations' => $educations,
         ]);
     }
 }
